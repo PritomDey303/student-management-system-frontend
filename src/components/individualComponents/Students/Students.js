@@ -2,18 +2,17 @@ import React from "react";
 import Footer from "../../sharedComponents/Footer/Footer";
 import Navigation from "../../sharedComponents/Navigation/Navigation";
 import BackToTop from "../../utilityComponents/BackToTop/BackToTop";
-import About from "./About/About";
-import HomeHeader from "./HomeHeader/HomeHeader";
-const Home = () => {
+import StudentsDrawer from "./StudentsDrawer/StudentsDrawer";
+
+const Students = () => {
   return (
     <div>
       <Navigation />
-      <HomeHeader />
-      <About />
-      <BackToTop />
+      <StudentsDrawer />
       <Footer />
+      <BackToTop />
     </div>
   );
 };
 
-export default Home;
+export default Students;

@@ -1,27 +1,31 @@
 import React from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
-
+import { Container, Image, Nav, Navbar } from "react-bootstrap";
+import logo from "../../../images/logo2.png";
+import Loginmodal from "../../utilityComponents/LoginModal/LoginModal";
+import "./Navigation.css";
 const Navigation = () => {
   return (
     <Navbar
       sticky="top"
-      className="bg-navy"
+      className="navigation bg-green py-3"
       collapseOnSelect
       expand="lg"
       variant="dark"
     >
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand className=" d-flex flex-row align-items-center ">
+          <Image src={logo} className="logo" rounded />
+          <h3 className="ms-3">𝓒𝓢𝓔𝓒𝓤</h3>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav>
-          <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              Dank memes
+          <Nav className="ml-auto" style={{ marginLeft: "auto" }}>
+            <Nav.Link href="/Profile">Profile</Nav.Link>
+            <Nav.Link href="/Profile">Notices</Nav.Link>
+            <Nav.Link href="/Profile">Results</Nav.Link>
+            <Nav.Link href="/pricing">Dashboard</Nav.Link>
+            <Nav.Link>
+              <Loginmodal />
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

@@ -1,0 +1,14 @@
+.footer {
+  background-color: #0b4619;
+}
+.icon {
+  font-size: 26px;
+}
+@media only screen and (max-width: 575px) {
+  .footer-about {
+    display: none;
+  }
+  .footer-contact {
+    justify-content: center;
+  }
+}

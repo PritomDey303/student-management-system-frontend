@@ -1,5 +1,5 @@
 import React from "react";
-import "./HomeBody.css";
+import "./HomeHeader.css";
 const Homebody = () => {
   return (
     <div className="home-body">

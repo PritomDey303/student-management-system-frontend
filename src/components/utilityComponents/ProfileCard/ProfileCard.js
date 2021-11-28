@@ -1,50 +1,33 @@
 import React from "react";
-import "./Profilecard.css";
-const Profilecard = () => {
+import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import "./ProfileCard.css";
+const Profilecard = (props) => {
+  console.log(props);
+  const { name, student_id, session } = props.students;
   return (
     <div>
-      <div class="our-team">
-        <div class="picture">
-          <img
-            class="img-fluid"
-            src="https://picsum.photos/130/130?image=1027"
+      <Card className="profile-card my-3 rounded">
+        <div className="profile-img-wrapper mx-auto my-3">
+          <Card.Img
+            className="profile-img mx-auto "
+            variant="top"
+            src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
           />
         </div>
-        <div class="team-content">
-          <h3 class="name">Michele Miller</h3>
-          <h4 class="title">Web Developer</h4>
-        </div>
-        <ul class="social">
-          <li>
-            <a
-              href="https://codepen.io/collection/XdWJOQ/"
-              class="fa fa-facebook"
-              aria-hidden="true"
-            ></a>
-          </li>
-          <li>
-            <a
-              href="https://codepen.io/collection/XdWJOQ/"
-              class="fa fa-twitter"
-              aria-hidden="true"
-            ></a>
-          </li>
-          <li>
-            <a
-              href="https://codepen.io/collection/XdWJOQ/"
-              class="fa fa-google-plus"
-              aria-hidden="true"
-            ></a>
-          </li>
-          <li>
-            <a
-              href="https://codepen.io/collection/XdWJOQ/"
-              class="fa fa-linkedin"
-              aria-hidden="true"
-            ></a>
-          </li>
-        </ul>
-      </div>
+
+        <Card.Body className="text-center">
+          <Card.Title>{name}</Card.Title>
+          <Card.Text>Id: {student_id}</Card.Text>
+          <Card.Text> Session:{session}</Card.Text>
+
+          <Link to={`/profile/${student_id}`}>
+            <div className="btn text-light bg-green profile-button rounded">
+              View Details
+            </div>
+          </Link>
+        </Card.Body>
+      </Card>
     </div>
   );
 };
