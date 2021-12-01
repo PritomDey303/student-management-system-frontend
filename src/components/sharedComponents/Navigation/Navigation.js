@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Image, Nav, Navbar } from "react-bootstrap";
 import logo from "../../../images/logo2.png";
 import Loginmodal from "../../utilityComponents/LoginModal/LoginModal";
+import Signupmodal from "../../utilityComponents/SignUpModal/SignUpModal";
 import "./Navigation.css";
 const Navigation = () => {
   return (
@@ -22,10 +23,12 @@ const Navigation = () => {
           <Nav className="ml-auto" style={{ marginLeft: "auto" }}>
             <Nav.Link href="/Profile">Profile</Nav.Link>
             <Nav.Link href="/Profile">Notices</Nav.Link>
-            <Nav.Link href="/Profile">Results</Nav.Link>
-            <Nav.Link href="/pricing">Dashboard</Nav.Link>
+            <Nav.Link href="/profile">Dashboard</Nav.Link>
             <Nav.Link>
               <Loginmodal />
+            </Nav.Link>
+            <Nav.Link>
+              <Signupmodal />
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

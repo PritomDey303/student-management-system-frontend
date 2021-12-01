@@ -3,8 +3,7 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./ProfileCard.css";
 const Profilecard = (props) => {
-  console.log(props);
-  const { name, student_id, session } = props.students;
+  const { name, studentId, session } = props.students;
   return (
     <div>
       <Card className="profile-card my-3 rounded">
@@ -18,10 +17,10 @@ const Profilecard = (props) => {
 
         <Card.Body className="text-center">
           <Card.Title>{name}</Card.Title>
-          <Card.Text>Id: {student_id}</Card.Text>
+          <Card.Text>Id: {studentId}</Card.Text>
           <Card.Text> Session:{session}</Card.Text>
 
-          <Link to={`/profile/${student_id}`}>
+          <Link to={`/profile/${studentId}`}>
             <div className="btn text-light bg-green profile-button rounded">
               View Details
             </div>

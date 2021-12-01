@@ -33,17 +33,17 @@ const Loginmodal = () => {
         </Modal.Header>
 
         <Modal.Body>
-          <h2 className="text-center mb-3 text-dark">Login</h2>
+          <h2 className="text-center mb-3 text-green">Login</h2>
           <form>
             <InputGroup className="mb-3 w-75 mx-auto">
               <InputGroup.Text
-                className="bg-transparent  border-end-0"
+                className="bg-transparent  border-end-0 "
                 id="basic-addon1"
               >
                 <FaUserAlt />
               </InputGroup.Text>
               <FormControl
-                className="border-start-0"
+                className="border-start-0 shadow-none"
                 placeholder="Username"
                 aria-label="Username"
                 aria-describedby="basic-addon1"
@@ -52,12 +52,12 @@ const Loginmodal = () => {
             <InputGroup className="mb-3 w-75 mx-auto">
               <InputGroup.Text
                 id="basic-addon1"
-                className="bg-transparent border-end-0"
+                className="bg-transparent border-end-0 "
               >
                 <RiLockPasswordFill />
               </InputGroup.Text>
               <FormControl
-                className="border-start-0"
+                className="border-start-0 shadow-none"
                 type={passwordVisibility ? "password" : "text"}
                 placeholder="Password"
                 aria-label="Password"
@@ -73,8 +73,7 @@ const Loginmodal = () => {
             />
             <input
               type="submit"
-              placeholder="Login"
-              className="w-75 d-block mx-auto text-light btn custom-button"
+              className="w-75 mb-4 d-block mx-auto text-light btn custom-button"
             />
           </form>
         </Modal.Body>
