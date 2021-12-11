@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Image, Nav, Navbar } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { ContextProvider } from "../../../App";
 import logo from "../../../images/logo2.png";
 import Loginmodal from "../../utilityComponents/LoginModal/LoginModal";
-import Signupmodal from "../../utilityComponents/SignUpModal/SignUpModal";
 import "./Navigation.css";
 const Navigation = () => {
+  //context
+  const [api, LoggedInUser, setLoggedInUser] = useContext(ContextProvider);
+  const logOutHandler = () => {
+    fetch(`${api}/authentication/logout`, {
+      method: "get",
+      credentials: "include", // <--- YOU NEED THIS LINE
+    })
+      .then(function (response) {
+        if (response.status === 200) {
+          setLoggedInUser({});
+        }
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  };
   return (
     <Navbar
       sticky="top"
@@ -21,15 +38,37 @@ const Navigation = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto" style={{ marginLeft: "auto" }}>
-            <Nav.Link href="/Profile">Profile</Nav.Link>
-            <Nav.Link href="/Profile">Notices</Nav.Link>
-            <Nav.Link href="/profile">Dashboard</Nav.Link>
-            <Nav.Link>
-              <Loginmodal />
-            </Nav.Link>
-            <Nav.Link>
-              <Signupmodal />
-            </Nav.Link>
+            <NavLink to="/" className="nav-link">
+              Home
+            </NavLink>
+            {LoggedInUser.role === 1 && (
+              <NavLink to="/profile" className="nav-link">
+                Profile
+              </NavLink>
+            )}
+
+            {LoggedInUser.role === 2 && (
+              <NavLink to="/students" className="nav-link">
+                Students
+              </NavLink>
+            )}
+
+            {LoggedInUser.role ? (
+              <NavLink to="#" className="nav-link">
+                <button className="btn btn-success" onClick={logOutHandler}>
+                  Logout
+                </button>
+              </NavLink>
+            ) : (
+              <NavLink to="#" className="nav-link">
+                <Loginmodal />
+              </NavLink>
+            )}
+            {!LoggedInUser.role && (
+              <NavLink to="/signup" className="nav-link">
+                <button className="btn btn-outline-warning">Sign Up</button>
+              </NavLink>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

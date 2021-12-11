@@ -3,7 +3,7 @@ import React from "react";
 const Academicinfo = () => {
   return (
     <>
-      <div class="card shadow-sm">
+      <div class="card pb-2 shadow-lg">
         <div class="card-header bg-transparent text-center">
           <img
             class="profile_img"

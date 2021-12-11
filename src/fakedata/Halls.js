@@ -12,4 +12,5 @@ const Halls = [
     hall_name: "Shamsun Nahar Hall",
   },
 ];
+
 export default Halls;

@@ -4,7 +4,7 @@ import { Table } from "react-bootstrap";
 const Personalinfo = () => {
   return (
     <>
-      <div class="card shadow-sm mb-4">
+      <div class="card p-3 shadow-lg mb-4">
         <div class="card-header bg-transparent border-0">
           <h3 class="mb-0">
             <i class="far fa-clone pr-1"></i>Personal Information

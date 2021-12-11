@@ -1,18 +1,55 @@
-import React, { useState } from "react";
-import { Form, FormControl, InputGroup, Modal } from "react-bootstrap";
-import { FaUserAlt } from "react-icons/fa";
-import { RiLockPasswordFill } from "react-icons/ri";
-
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+  FormControl,
+  IconButton,
+  Input,
+  InputAdornment,
+  InputLabel,
+  TextField,
+} from "@mui/material";
+import axios from "axios";
+import React, { useContext, useState } from "react";
+import { Container, Modal } from "react-bootstrap";
+import { ContextProvider } from "../../../App";
+import "./LoginModal.css";
 const Loginmodal = () => {
+  const [, , setLoggedInUser] = useContext(ContextProvider);
   const [passwordVisibility, setPasswordVisibility] = useState(true);
-  const [show, setShow] = useState(false);
 
+  const [show, setShow] = useState(false);
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handlePasswordVisibility = () => {
     passwordVisibility
       ? setPasswordVisibility(false)
       : setPasswordVisibility(true);
+  };
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleLogin = (e) => {
+    const userObj = {
+      email: Email,
+      password: Password,
+    };
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+    //calling api
+    axios
+      .post("http://localhost:5000/authentication/login", userObj, config)
+      .then((res) => setLoggedInUser(res.data));
   };
   return (
     <div>
@@ -33,49 +70,53 @@ const Loginmodal = () => {
         </Modal.Header>
 
         <Modal.Body>
-          <h2 className="text-center mb-3 text-green">Login</h2>
-          <form>
-            <InputGroup className="mb-3 w-75 mx-auto">
-              <InputGroup.Text
-                className="bg-transparent  border-end-0 "
-                id="basic-addon1"
-              >
-                <FaUserAlt />
-              </InputGroup.Text>
-              <FormControl
-                className="border-start-0 shadow-none"
-                placeholder="Username"
-                aria-label="Username"
-                aria-describedby="basic-addon1"
+          <Container>
+            <h2 className="text-center mb-3 text-green">Login</h2>
+            <form className="loginForm">
+              <TextField
+                className="w-100 mb-3"
+                label="Email"
+                type="email"
+                value={Email}
+                onChange={handleEmailChange}
+                variant="standard"
               />
-            </InputGroup>
-            <InputGroup className="mb-3 w-75 mx-auto">
-              <InputGroup.Text
-                id="basic-addon1"
-                className="bg-transparent border-end-0 "
-              >
-                <RiLockPasswordFill />
-              </InputGroup.Text>
-              <FormControl
-                className="border-start-0 shadow-none"
-                type={passwordVisibility ? "password" : "text"}
-                placeholder="Password"
-                aria-label="Password"
-                aria-describedby="basic-addon1"
+
+              {/* Student Password */}
+              <FormControl className="w-100 mb-4" variant="standard">
+                <InputLabel htmlFor="standard-adornment-password">
+                  Password
+                </InputLabel>
+                <Input
+                  id="standard-adornment-password"
+                  type={passwordVisibility ? "text" : "password"}
+                  value={Password}
+                  onChange={handlePasswordChange}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handlePasswordVisibility}
+                        // onMouseDown={handleMouseDownPassword}
+                      >
+                        {passwordVisibility ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+              <input
+                type="button"
+                value="Submit"
+                onClick={handleLogin}
+                className="w-100 mb-4 d-block mx-auto text-light btn custom-button"
               />
-            </InputGroup>
-            <Form.Check
-              name="terms"
-              label="Show Password"
-              style={{ fontSize: "14px" }}
-              className=" d-block w-75 mx-auto mb-4 text-secondary"
-              onClick={handlePasswordVisibility}
-            />
-            <input
-              type="submit"
-              className="w-75 mb-4 d-block mx-auto text-light btn custom-button"
-            />
-          </form>
+            </form>
+          </Container>
         </Modal.Body>
       </Modal>
     </div>

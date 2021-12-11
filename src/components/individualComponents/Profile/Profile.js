@@ -16,7 +16,7 @@ const Profile = () => {
   );
   console.log(filteredStudentData);
   return (
-    <div>
+    <div style={{ backgroundColor: "aliceblue" }}>
       <Navigation />
 
       <div class="student-profile py-4">

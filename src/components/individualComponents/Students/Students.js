@@ -7,7 +7,7 @@ import StudentsDrawer from "./StudentsDrawer/StudentsDrawer";
 
 const Students = () => {
   return (
-    <div>
+    <div style={{ backgroundColor: "aliceblue" }}>
       <Navigation />
       <FilterBox />
       <StudentsDrawer />
