@@ -10,10 +10,12 @@ import {
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { Container, Modal } from "react-bootstrap";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { ContextProvider } from "../../../App";
 import "./LoginModal.css";
 const Loginmodal = () => {
-  const [, , setLoggedInUser] = useContext(ContextProvider);
+  const [api, , setLoggedInUser] = useContext(ContextProvider);
   const [passwordVisibility, setPasswordVisibility] = useState(true);
 
   const [show, setShow] = useState(false);
@@ -34,6 +36,10 @@ const Loginmodal = () => {
     setPassword(e.target.value);
   };
 
+  //toaster
+  const notify = () => toast("Wow so easy!");
+
+  //handle login
   const handleLogin = (e) => {
     const userObj = {
       email: Email,
@@ -44,13 +50,21 @@ const Loginmodal = () => {
       headers: {
         "Content-Type": "application/json",
       },
+
       withCredentials: true,
     };
     //calling api
-    axios
-      .post("http://localhost:5000/authentication/login", userObj, config)
-      .then((res) => setLoggedInUser(res.data));
+    axios.post(`${api}/authentication/login`, userObj, config).then((res) => {
+      if (res.status === 200) {
+        notify();
+      } else {
+        notify();
+      }
+      console.log(res);
+      setLoggedInUser(res.data);
+    });
   };
+
   return (
     <div>
       <button className="btn btn-success" onClick={handleShow}>

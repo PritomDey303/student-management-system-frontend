@@ -10,7 +10,6 @@ import Personalinfo from "./PersonalInfo/PersonalInfo";
 import "./Profile.css";
 const Profile = () => {
   const { id } = useParams();
-  console.log(typeof id);
   const filteredStudentData = StudentsData.filter(
     (student) => student.studentId === parseInt(id)
   );
@@ -23,11 +22,11 @@ const Profile = () => {
         <div class="container">
           <Row>
             <Col lg={4}>
-              <Academicinfo />
+              <Academicinfo id={id} />
             </Col>
             <Col lg={8}>
-              <Personalinfo />
-              <Educationinfo />
+              <Personalinfo id={id} />
+              <Educationinfo id={id} />
             </Col>
           </Row>
         </div>

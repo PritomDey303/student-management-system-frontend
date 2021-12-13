@@ -65,7 +65,11 @@ const Filterbox = () => {
                 >
                   <option value="">Select Session</option>
                   {sessions.map((session) => {
-                    return <option value={session}>{session}</option>;
+                    return (
+                      <option key={session} value={session}>
+                        {session}
+                      </option>
+                    );
                   })}
                 </Form.Select>
               </Form.Group>
@@ -80,7 +84,10 @@ const Filterbox = () => {
                 >
                   {semesters.map((semester) => {
                     return (
-                      <option value={semester.semester_id}>
+                      <option
+                        key={semester.semester_id}
+                        value={semester.semester_id}
+                      >
                         {semester.semester_name}
                       </option>
                     );

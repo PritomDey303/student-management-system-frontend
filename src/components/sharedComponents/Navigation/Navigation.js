@@ -41,13 +41,13 @@ const Navigation = () => {
             <NavLink to="/" className="nav-link">
               Home
             </NavLink>
-            {LoggedInUser.role === 1 && (
+            {LoggedInUser.role === 2 && (
               <NavLink to="/profile" className="nav-link">
                 Profile
               </NavLink>
             )}
 
-            {LoggedInUser.role === 2 && (
+            {LoggedInUser.role === 1 && (
               <NavLink to="/students" className="nav-link">
                 Students
               </NavLink>

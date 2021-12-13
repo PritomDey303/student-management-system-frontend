@@ -9,7 +9,14 @@ const StudentsDrawer = () => {
         {/* StudentsCard display */}
         <Row>
           {StudentsData.map((student) => (
-            <Col xs={12} sm={6} md={4} lg={3} className="mb-2">
+            <Col
+              key={student.studentId}
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
+              className="mb-2"
+            >
               <ProfileCard key={student.studentId} students={student} />
             </Col>
           ))}
