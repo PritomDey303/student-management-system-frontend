@@ -13,29 +13,64 @@ import axios from "axios";
 import { React, useContext, useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useToasts } from "react-toast-notifications";
+import { ToastContainer } from "react-toastify";
 import { ContextProvider } from "../../../../App";
 import { singleImgUploader } from "../../../../utilityFunctions/imgUploader";
+
 const SignUpBox = () => {
   const { register, handleSubmit } = useForm();
-  //handling signup
+  //context api
+  const [api] = useContext(ContextProvider);
+  //react toaster
+
+  //toast hook
+  const { addToast } = useToasts();
 
   //////////////////////////////
   //setting form data into signUpData hook
-  const signUpData = new FormData();
 
-  const onSubmit = (data) => {
-    signUpData.append("id_image", data.id_image[0]);
-    console.log(signUpData);
+  const onSubmit = (data, e) => {
+    const formData = new FormData();
+    formData.append("id_img", data.id_image[0]);
+    formData.append("name", data.student_name);
+    formData.append("semester", data.semester);
+    formData.append("session", data.session);
+    formData.append("hall", data.hall);
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    formData.append("student_id", data.student_id);
+    formData.append("role", parseInt(data.role));
     const config = {
       headers: {
         "content-Type": "multipart/form-data",
       },
-      withCredentials: true,
     };
     //calling api
     axios
-      .post("http://localhost:5000/signup/student", signUpData, config)
-      .then((res) => console.log(res));
+      .post(`${api}/signup/student`, formData, config)
+      .then((res) => {
+        console.log(res.data.msg);
+        if (res.data.status === 200) {
+          addToast(res.data.msg, {
+            appearance: "success",
+            placement: "top-right",
+            autoDismiss: true,
+            autoDismissTimeout: 5000,
+            transitionDuration: 400,
+          });
+          e.target.reset();
+        } else {
+          addToast(res.data.msg, {
+            appearance: "error",
+            placement: "top-right",
+            autoDismiss: true,
+            autoDismissTimeout: 5000,
+            transitionDuration: 400,
+          });
+        }
+      })
+      .catch((err) => console.log(err.message));
   };
 
   const [passwordVisibility, setPasswordVisibility] = useState(false);
@@ -44,8 +79,7 @@ const SignUpBox = () => {
       ? setPasswordVisibility(false)
       : setPasswordVisibility(true);
   };
-  //context api
-  const [api] = useContext(ContextProvider);
+
   //halls hook
   const [Halls, setHalls] = useState([]);
   //session hook
@@ -76,7 +110,14 @@ const SignUpBox = () => {
       <div className=" mx-auto py-3 signup-box ">
         <h3 className="text-center mb-3 text-green">Sign Up</h3>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="mx-auto mb-2 w-75">
+        <form
+          method="post"
+          encType="multipart/form-data"
+          onSubmit={handleSubmit(onSubmit)}
+          className="mx-auto mb-2 w-75"
+          action="/"
+        >
+          <input type="hidden" value={2} {...register("role")} />
           <TextField
             {...register("student_name", { required: true })}
             className="w-100"
@@ -108,16 +149,17 @@ const SignUpBox = () => {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                {session.map((signleSession) => {
-                  return (
-                    <MenuItem
-                      key={signleSession.session}
-                      value={signleSession.session}
-                    >
-                      {signleSession.session}
-                    </MenuItem>
-                  );
-                })}
+                {session &&
+                  session.map((signleSession) => {
+                    return (
+                      <MenuItem
+                        key={signleSession.session}
+                        value={signleSession.session}
+                      >
+                        {signleSession.session}
+                      </MenuItem>
+                    );
+                  })}
               </Select>
             </FormControl>
           </div>
@@ -137,13 +179,14 @@ const SignUpBox = () => {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                {Halls.map((hall) => {
-                  return (
-                    <MenuItem key={hall.hall_id} value={hall.hall_id}>
-                      {hall.hall_name}
-                    </MenuItem>
-                  );
-                })}
+                {Halls &&
+                  Halls.map((hall) => {
+                    return (
+                      <MenuItem key={hall.hall_id} value={hall.hall_id}>
+                        {hall.hall_name}
+                      </MenuItem>
+                    );
+                  })}
               </Select>
             </FormControl>
 
@@ -161,16 +204,17 @@ const SignUpBox = () => {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                {semesters.map((singleSemester) => {
-                  return (
-                    <MenuItem
-                      key={singleSemester.semester_id}
-                      value={singleSemester.semester_id}
-                    >
-                      {singleSemester.semester_name}
-                    </MenuItem>
-                  );
-                })}
+                {semesters &&
+                  semesters.map((singleSemester) => {
+                    return (
+                      <MenuItem
+                        key={singleSemester.semester_id}
+                        value={singleSemester.semester_id}
+                      >
+                        {singleSemester.semester_name}
+                      </MenuItem>
+                    );
+                  })}
               </Select>
             </FormControl>
           </div>
@@ -226,6 +270,8 @@ const SignUpBox = () => {
           />
         </form>
       </div>
+
+      <ToastContainer />
     </div>
   );
 };

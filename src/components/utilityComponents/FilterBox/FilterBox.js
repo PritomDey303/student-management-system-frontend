@@ -21,7 +21,7 @@ const Filterbox = () => {
           onClick={() => {
             setDisplayFilter(!DisplayFilter);
           }}
-          className="btn shadow-none btn-outline-success d-block mx-auto mb-3 w-25"
+          className="btn shadow-none btn-outline-success d-block mx-auto mb-3 "
         >
           {DisplayFilter ? "Close Filter" : "Open Filter"}
           {"  "}

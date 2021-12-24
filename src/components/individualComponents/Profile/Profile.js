@@ -1,19 +1,16 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import { useParams } from "react-router";
-import StudentsData from "../../../fakedata/StudentsData";
+import { useParams } from "react-router-dom";
 import Footer from "../../sharedComponents/Footer/Footer";
 import Navigation from "../../sharedComponents/Navigation/Navigation";
 import Academicinfo from "./AcademicInfo/AcademicInfo";
 import Educationinfo from "./EducationInfo/EducationInfo";
 import Personalinfo from "./PersonalInfo/PersonalInfo";
 import "./Profile.css";
+
 const Profile = () => {
   const { id } = useParams();
-  const filteredStudentData = StudentsData.filter(
-    (student) => student.studentId === parseInt(id)
-  );
-  console.log(filteredStudentData);
+
   return (
     <div style={{ backgroundColor: "aliceblue" }}>
       <Navigation />

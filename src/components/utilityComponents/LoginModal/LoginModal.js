@@ -10,13 +10,14 @@ import {
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { Container, Modal } from "react-bootstrap";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ContextProvider } from "../../../App";
 import "./LoginModal.css";
+
 const Loginmodal = () => {
+  const [errorMsg, setErrorMsg] = useState("");
   const [api, , setLoggedInUser] = useContext(ContextProvider);
-  const [passwordVisibility, setPasswordVisibility] = useState(true);
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
 
   const [show, setShow] = useState(false);
   const [Email, setEmail] = useState("");
@@ -36,9 +37,6 @@ const Loginmodal = () => {
     setPassword(e.target.value);
   };
 
-  //toaster
-  const notify = () => toast("Wow so easy!");
-
   //handle login
   const handleLogin = (e) => {
     const userObj = {
@@ -54,17 +52,24 @@ const Loginmodal = () => {
       withCredentials: true,
     };
     //calling api
-    axios.post(`${api}/authentication/login`, userObj, config).then((res) => {
-      if (res.status === 200) {
-        notify();
-      } else {
-        notify();
-      }
-      console.log(res);
-      setLoggedInUser(res.data);
-    });
+    axios
+      .post(`${api}/authentication/login`, userObj, config)
+      .then((res) => {
+        if (res.data.email && res.data.role) {
+          setErrorMsg("");
+          setLoggedInUser(res.data);
+        } else {
+          setErrorMsg(res.data.msg);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
-
+  errorMsg !== "" &&
+    setTimeout(() => {
+      setErrorMsg("");
+    }, 4000);
   return (
     <div>
       <button className="btn btn-success" onClick={handleShow}>
@@ -129,6 +134,9 @@ const Loginmodal = () => {
                 onClick={handleLogin}
                 className="w-100 mb-4 d-block mx-auto text-light btn custom-button"
               />
+              <p className="lead text-bold text-danger text-center d-block">
+                <b>{errorMsg}</b>
+              </p>
             </form>
           </Container>
         </Modal.Body>
@@ -137,4 +145,4 @@ const Loginmodal = () => {
   );
 };
 
-export default Loginmodal;
+export default React.memo(Loginmodal);

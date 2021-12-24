@@ -1,10 +1,11 @@
 .profile-card {
   box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.28);
   transition: 0.5s;
-  background: #fff
+  /* background: #fff
     url("https://image.freepik.com/free-vector/green-white-polygonal-background_1035-6041.jpg")
-    top 0% center no-repeat;
+    top 0% center no-repeat; */
   background-size: cover;
+  border-radius: 20px;
 }
 
 .profile-img-wrapper {
@@ -25,9 +26,13 @@
   transform: translate(-50%, -50%);
 }
 .profile-card:hover {
+  transition: 0.3s;
   box-shadow: 0px 0px 26px 10px rgba(0, 0, 0, 0.28);
   -webkit-box-shadow: 0px 0px 26px 10px rgba(0, 0, 0, 0.28);
   -moz-box-shadow: 0px 0px 26px 10px rgba(0, 0, 0, 0.28);
+  transform: scaleX(1) scaleY(1.05) scaleZ(1) rotateX(0deg) rotateY(0deg)
+    rotateZ(0deg) translateX(0px) translateY(0px) translateZ(0px) skewX(0deg)
+    skewY(0deg);
 }
 .profile-card:hover .profile-img-wrapper {
   background-color: #77d970;
@@ -35,6 +40,7 @@
 
 .profile-button {
   transition: 0.3s;
+  border-radius: 10px;
 }
 .profile-button:hover {
   background-color: rgb(0, 60, 0);
@@ -42,8 +48,8 @@
 
 @media only screen and (min-width: 1200px) {
   .profile-img-wrapper {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
   }
   .profile-img {
     width: 140px;

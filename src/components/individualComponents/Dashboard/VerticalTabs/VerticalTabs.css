@@ -1,0 +1,16 @@
+.nav.nav-pills {
+  border-right: 2px solid green;
+  background-color: rgb(225, 243, 233);
+  height: 100vh;
+  cursor: pointer;
+}
+.nav.nav-pills .nav-link.active {
+  background-color: #0b4619;
+  color: #fff;
+}
+.nav.nav-pills .nav-link {
+  text-align: center;
+  padding: 10px 0;
+  color: black;
+  border-bottom: 2px solid green;
+}

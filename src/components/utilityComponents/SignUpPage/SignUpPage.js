@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { ContextProvider } from "../../../App";
 import Footer from "../../sharedComponents/Footer/Footer";
 import Navigation from "../../sharedComponents/Navigation/Navigation";
 import AdminSignUp from "./AdminSignUp/AdminSignUp";
 import SignUpBox from "./SignUpBox/SignUpBox";
 import "./SignUpModal.css";
 const Signuppage = () => {
+  const navigate = useNavigate();
+  const [, LoggedInUser] = useContext(ContextProvider);
+  LoggedInUser.email && navigate("/");
+
   const [isActive, setisActive] = useState("student");
+
   return (
     <div style={{ backgroundColor: "aliceblue" }}>
       <Navigation />
@@ -29,9 +36,9 @@ const Signuppage = () => {
             Admin Sign Up
           </button>
         </div>
-      </Container>
-      {isActive === "student" && <SignUpBox />}
+      </Container>{" "}
       {isActive === "admin" && <AdminSignUp />}
+      {isActive === "student" && <SignUpBox />}
       <Footer />
     </div>
   );

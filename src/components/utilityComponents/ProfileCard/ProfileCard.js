@@ -1,17 +1,19 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import blankPicture from "../../../images/blank-profile-picture.png";
 import "./ProfileCard.css";
 const Profilecard = (props) => {
   const { name, studentId, session } = props.students;
+  const profile_picture = null;
   return (
     <div>
-      <Card className="profile-card my-3 rounded">
+      <Card className="profile-card my-3 ">
         <div className="profile-img-wrapper mx-auto my-3">
           <Card.Img
             className="profile-img mx-auto "
             variant="top"
-            src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            src={profile_picture ? profile_picture : blankPicture}
           />
         </div>
 
@@ -21,7 +23,7 @@ const Profilecard = (props) => {
           <Card.Text> Session:{session}</Card.Text>
 
           <Link to={`/profile/${studentId}`}>
-            <div className="btn text-light bg-green profile-button rounded">
+            <div className="btn btn-outline-success profile-button ">
               View Details
             </div>
           </Link>

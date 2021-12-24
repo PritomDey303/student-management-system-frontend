@@ -1,17 +1,11 @@
-// import { BoxesLoader } from "react-awesome-loaders";
-// export default  BoxesLoaderComponent = () => {
-//   return (
-//
-//   );
-// };
-
 import React from "react";
 import { BoxesLoader } from "react-awesome-loaders";
-
-const Boxesloadercomponent = () => {
+import "./BoxLoader.css";
+const Boxloader = () => {
   return (
-    <div className="box-loader">
+    <div className="box-loader-container">
       <BoxesLoader
+        className="box-loader"
         boxColor={"#6366F1"}
         style={{ marginBottom: "20px" }}
         desktopSize={"128px"}
@@ -21,4 +15,4 @@ const Boxesloadercomponent = () => {
   );
 };
 
-export default Boxesloadercomponent;
+export default Boxloader;

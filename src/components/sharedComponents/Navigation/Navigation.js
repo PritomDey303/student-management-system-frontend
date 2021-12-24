@@ -14,6 +14,7 @@ const Navigation = () => {
       credentials: "include", // <--- YOU NEED THIS LINE
     })
       .then(function (response) {
+        console.log(response);
         if (response.status === 200) {
           setLoggedInUser({});
         }
@@ -29,6 +30,7 @@ const Navigation = () => {
       collapseOnSelect
       expand="lg"
       variant="dark"
+      style={{ zIndex: "999" }}
     >
       <Container>
         <Navbar.Brand className=" d-flex flex-row align-items-center ">
@@ -42,7 +44,7 @@ const Navigation = () => {
               Home
             </NavLink>
             {LoggedInUser.role === 2 && (
-              <NavLink to="/profile" className="nav-link">
+              <NavLink to={`/profile/18701034`} className="nav-link">
                 Profile
               </NavLink>
             )}
@@ -53,6 +55,11 @@ const Navigation = () => {
               </NavLink>
             )}
 
+            {LoggedInUser.email && (
+              <NavLink to="/dashboard" className="nav-link">
+                Dashboard
+              </NavLink>
+            )}
             {LoggedInUser.role ? (
               <NavLink to="#" className="nav-link">
                 <button className="btn btn-success" onClick={logOutHandler}>

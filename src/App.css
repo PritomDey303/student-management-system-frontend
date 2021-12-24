@@ -25,3 +25,12 @@
 .text-green {
   color: #073511;
 }
+.css-h0gpo1-ToastElement {
+  z-index: 1000000099;
+}
+.react-toast-notifications__container {
+  z-index: 9999999999999999;
+}
+.css-nvf14r-ToastContainer {
+  z-index: 9999999999999999;
+}
