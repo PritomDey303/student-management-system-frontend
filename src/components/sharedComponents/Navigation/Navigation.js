@@ -44,7 +44,7 @@ const Navigation = () => {
               Home
             </NavLink>
             {LoggedInUser.role === 2 && (
-              <NavLink to={`/profile/18701034`} className="nav-link">
+              <NavLink to={`/profile/*`} className="nav-link">
                 Profile
               </NavLink>
             )}

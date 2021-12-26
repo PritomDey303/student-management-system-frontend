@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import blankPicture from "../../../images/blank-profile-picture.png";
 import "./ProfileCard.css";
 const Profilecard = (props) => {
-  const { name, studentId, session } = props.students;
+  const { name, student_id, session } = props.students;
   const profile_picture = null;
   return (
     <div>
@@ -19,10 +19,10 @@ const Profilecard = (props) => {
 
         <Card.Body className="text-center">
           <Card.Title>{name}</Card.Title>
-          <Card.Text>Id: {studentId}</Card.Text>
+          <Card.Text>Id: {student_id}</Card.Text>
           <Card.Text> Session:{session}</Card.Text>
 
-          <Link to={`/profile/${studentId}`}>
+          <Link to={`/profile/${student_id}`}>
             <div className="btn btn-outline-success profile-button ">
               View Details
             </div>

@@ -1,28 +1,34 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Col, Row, Table } from "react-bootstrap";
+import { Col, Image, Modal, Row, Table } from "react-bootstrap";
 import { useToasts } from "react-toast-notifications";
 
-const Adminrequest = () => {
+const Studentrequest = () => {
   const { addToast } = useToasts();
-  const [Admins, setAdmins] = useState([]);
+  const [Students, setStudents] = useState([]);
   const [Reload, setReload] = useState(1);
+
+  //react modal functions and state
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   useEffect(() => {
     Reload &&
       axios({
         method: "get",
-        url: "http://localhost:5000/admin/adminpendingrequest",
+        url: "http://localhost:5000/students/pendingstudents",
       }).then(function (res) {
         console.log(res.data);
-        setAdmins(res.data);
+        setStudents(res.data);
       });
   }, [Reload]);
 
-  //approve admin function
-  const approveAdmin = (auth_id) => {
+  //approve student function
+  const approveStudents = (auth_id) => {
     if (window.confirm("Are you sure?")) {
       axios
-        .put(`http://localhost:5000/admin/approveadmin/${auth_id}`)
+        .put(`http://localhost:5000/students/approvestudent/${auth_id}`)
         .then((res) => {
           if (res.status === 200) {
             addToast(res.data.msg, {
@@ -46,11 +52,11 @@ const Adminrequest = () => {
     }
   };
 
-  //decline admin reauest
-  const declineAdmin = (auth_id) => {
+  //decline student reauest
+  const declineStudents = (auth_id) => {
     if (window.confirm("Are you sure?")) {
       axios
-        .delete(`http://localhost:5000/admin/declineadmin/${auth_id}`)
+        .delete(`http://localhost:5000/students/declinestudent/${auth_id}`)
         .then((res) => {
           console.log(res);
           if (res.status === 200) {
@@ -78,7 +84,7 @@ const Adminrequest = () => {
     <div>
       <Row className="my-4">
         <Col>
-          <h2 className="text-success">Verify Admin Signup Requests</h2>
+          <h2 className="text-success">Verify Student Signup Requests</h2>
         </Col>
       </Row>
       <Row>
@@ -86,23 +92,48 @@ const Adminrequest = () => {
           <Table striped hover size="lg" responsive>
             <thead className="bg-success text-light border-none">
               <tr className="text-center">
-                <th>Auth Id</th>
+                <th>Student Id</th>
                 <th>Name</th>
+                <th>Session</th>
+                <th>Current Semester</th>
+                <th>Hall</th>
                 <th>Email</th>
+                <th>Id Image</th>
                 <th>Aprrove</th>
                 <th>Decline</th>
               </tr>
             </thead>
             <tbody>
-              {Admins.map((admin) => (
-                <tr key={admin.authentication_id} className="text-center">
-                  <td>{admin.authentication_id}</td>
-                  <td>{admin.admin_name}</td>
-                  <td>{admin.email}</td>
+              {Students.map((student) => (
+                <tr key={student.authentication_id} className="text-center">
+                  <td>{student.student_id}</td>
+                  <td>{student.name}</td>
+                  <td>{student.session}</td>
+                  <td>{student.semester_name}</td>
+                  <td>{student.hall_name}</td>
+                  <td>{student.email}</td>
+                  <td>
+                    <button
+                      className="btn btn-outline-warning"
+                      onClick={handleShow}
+                    >
+                      View
+                    </button>
+
+                    <Modal show={show} onHide={handleClose} centered>
+                      <Modal.Body className="bg-dark">
+                        <Image
+                          src={student.id_img}
+                          className="w-100 h-75"
+                          thumbnail
+                        />
+                      </Modal.Body>
+                    </Modal>
+                  </td>
                   <td>
                     <button
                       className="btn btn-outline-success"
-                      onClick={() => approveAdmin(admin.authentication_id)}
+                      onClick={() => approveStudents(student.authentication_id)}
                     >
                       Approve
                     </button>
@@ -110,7 +141,7 @@ const Adminrequest = () => {
                   <td>
                     <button
                       className="btn btn-outline-danger"
-                      onClick={() => declineAdmin(admin.authentication_id)}
+                      onClick={() => declineStudents(student.authentication_id)}
                     >
                       Decline
                     </button>
@@ -125,4 +156,4 @@ const Adminrequest = () => {
   );
 };
 
-export default Adminrequest;
+export default Studentrequest;

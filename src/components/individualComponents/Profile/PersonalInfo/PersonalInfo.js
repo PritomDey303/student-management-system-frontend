@@ -1,77 +1,91 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 
-const Personalinfo = () => {
+const Personalinfo = (props) => {
+  const {
+    father_name,
+    mother_name,
+    present_address,
+    permanent_address,
+    date_of_birth,
+    gender,
+    religion,
+    nid,
+    email,
+    phone,
+    local_guardian_name,
+    local_guardian_phone,
+  } = props.personalInfo;
   return (
     <>
-      <div class="card p-3 shadow-lg mb-4">
-        <div class="card-header bg-transparent border-0">
-          <h3 class="mb-0">
-            <i class="far fa-clone pr-1"></i>Personal Information
+      <div className="card p-3 shadow-lg mb-4">
+        <div className="card-header bg-transparent border-0">
+          <h3 className="mb-2 text-success">
+            <i className="far fa-clone pr-1 "></i>Personal Information
           </h3>
         </div>
-        <div class="card-body pt-0">
+        <div className="card-body pt-0">
           <Table striped borderless>
             <tbody>
               <tr>
                 <th width="30%">Father's Name</th>
                 <td width="2%">:</td>
-                <td>Abu Sufian</td>
+                <td>{father_name}</td>
               </tr>
               <tr>
                 <th width="30%">Mother's Name </th>
                 <td width="2%">:</td>
-                <td>Sokhina Begum</td>
+                <td>{mother_name}</td>
               </tr>
               <tr>
                 <th width="30%">Present Address</th>
                 <td width="2%">:</td>
-                <td>Chittagong University,Jobra,Chittagong</td>
+                <td>{present_address}</td>
               </tr>
               <tr>
                 <th width="30%">Permanent Address</th>
                 <td width="2%">:</td>
-                <td>Chittagong University,Jobra,Chittagong</td>
+                <td>{permanent_address}</td>
               </tr>
               <tr>
                 <th width="30%">Date of Birth</th>
                 <td width="2%">:</td>
-                <td>12/12/1997</td>
+                <td>{date_of_birth}</td>
               </tr>
               <tr>
                 <th width="30%">Gender</th>
                 <td width="2%">:</td>
-                <td>Male</td>
+                <td>{gender}</td>
               </tr>
               <tr>
                 <th width="30%"> Religion</th>
                 <td width="2%">:</td>
-                <td>Islam</td>
+                <td>{religion}</td>
               </tr>
               <tr>
                 <th width="30%">NID No.</th>
                 <td width="2%">:</td>
-                <td>1234567890643564</td>
+                <td>{nid}</td>
               </tr>
               <tr>
                 <th width="30%">Email</th>
                 <td width="2%">:</td>
-                <td>jack@gmail.com</td>
+                <td>{email}</td>
               </tr>
               <tr>
                 <th width="30%">Phone No.</th>
                 <td width="2%">:</td>
-                <td>12/12/1997</td>
+                <td>{phone}</td>
               </tr>
               <tr>
                 <th width="30%">Local Gurdian's Name</th>
                 <td width="2%">:</td>
-                <td>Abu Bashar</td>
+                <td>{local_guardian_name}</td>
               </tr>
               <tr>
                 <th width="30%">Local Gurdian's Phone No.</th>
                 <td width="2%">:</td>
-                <td>013355637553</td>
+                <td>{local_guardian_phone}</td>
               </tr>
             </tbody>
           </Table>

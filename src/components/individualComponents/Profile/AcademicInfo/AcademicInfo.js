@@ -1,36 +1,52 @@
 import React from "react";
 import blankPicture from "../../../../images/blank-profile-picture.png";
-import "./AcademicInfo.css";
-const Academicinfo = () => {
-  const profile_picture = null;
-
+const Academicinfo = (props) => {
+  const {
+    student_id,
+    name,
+    hall_name,
+    session,
+    semester_name,
+    profile_picture,
+  } = props.academicInfo;
+  console.log(props.academicInfo);
   return (
-    <div classname="card  bg-light pb-2 shadow-lg">
-      <div classname="card-header bg-transparent text-center">
-        <img
-          classname="profile_img"
-          src={profile_picture ? profile_picture : blankPicture}
-          alt="profile_picture"
-          width={150}
-          height={150}
-        />
-        <h3>Ishmam Ahasan Samin</h3>
+    <>
+      <div
+        className="card text-center   shadow-lg  p-2 shadow-lg"
+        style={{ borderRadius: "10px" }}
+      >
+        <div className="card-header bg-transparent border-none  text-center">
+          <img
+            className="profile_img d-block mx-auto rounded-circle mb-2"
+            src={profile_picture !== "N/A" ? profile_picture : blankPicture}
+            alt="profile_picture"
+            width={150}
+            height={150}
+            style={{ border: "8px solid #0B4619" }}
+          />
+          <h3 className="text-center text-green">{name}</h3>
+        </div>
+        <div className="card-body  mt-3" style={{ textAlign: "center" }}>
+          <p className="mb-3 ">
+            <strong className="text-center ">Student ID: </strong>
+            {student_id}
+          </p>
+          <p className="mb-3">
+            <strong className="pr-1">Session: </strong>
+            {session}
+          </p>
+          <p className="mb-3">
+            <strong className="pr-1">Current Semester: </strong>
+            {semester_name}
+          </p>
+          <p className="mb-3">
+            <strong className="pr-1">Hall: </strong>
+            {hall_name}
+          </p>
+        </div>
       </div>
-      <div classname="card-body mt-3">
-        <p classname="mb-3">
-          <strong classname="pr-1">Student ID:</strong>18701932
-        </p>
-        <p classname="mb-3">
-          <strong classname="pr-1">Session:</strong>2017-18
-        </p>
-        <p classname="mb-3">
-          <strong classname="pr-1">Current Semester:</strong>4th Semester
-        </p>
-        <p classname="mb-3">
-          <strong classname="pr-1">Hall:</strong>Saheed Abdur Rab Hall
-        </p>
-      </div>
-    </div>
+    </>
   );
 };
 

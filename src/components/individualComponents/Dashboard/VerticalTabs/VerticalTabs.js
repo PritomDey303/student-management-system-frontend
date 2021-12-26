@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { Col, Nav, Row, Tab } from "react-bootstrap";
 import { ContextProvider } from "../../../../App";
 import AdminRequest from "../AdminRequest/AdminRequest";
+import Dashboardwelcome from "../DashboardWelcome/DashboardWelcome";
+import Studentrequest from "../StudentRequest/StudentRequest";
 import "./VerticalTabs.css";
 const Verticaltabs = () => {
   const [, LoggedInUser] = useContext(ContextProvider);
@@ -59,7 +61,7 @@ const Verticaltabs = () => {
             {LoggedInUser.role === 2 && (
               <Tab.Content>
                 <Tab.Pane eventKey="Dashboard">
-                  <h1>Pritom Dey</h1>
+                  <Dashboardwelcome />
                 </Tab.Pane>
                 <Tab.Pane eventKey="UpdateProfilePicture">
                   <h1>ssldfjasf;</h1>
@@ -75,13 +77,13 @@ const Verticaltabs = () => {
             {LoggedInUser.role === 1 && (
               <Tab.Content>
                 <Tab.Pane eventKey="Dashboard">
-                  <h1>Pritom Dey</h1>
+                  <Dashboardwelcome />
                 </Tab.Pane>
                 <Tab.Pane eventKey="UpdateProfilePicture">
                   <h1>ssldfjasf;</h1>
                 </Tab.Pane>
-                <Tab.Pane eventKey="UpdatePersonalInfo">
-                  <h1>ssldfjasf;</h1>
+                <Tab.Pane eventKey="StudentSignUpRequests">
+                  <Studentrequest />
                 </Tab.Pane>
                 <Tab.Pane eventKey="AdminSignUpRequests">
                   <AdminRequest />

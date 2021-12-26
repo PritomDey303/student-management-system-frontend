@@ -1,9 +1,11 @@
 import { React, useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { default as StudentsData } from "../../../../fakedata/StudentsData";
 import ProfileCard from "../../../utilityComponents/ProfileCard/ProfileCard";
-const StudentsDrawer = () => {
+const StudentsDrawer = (props) => {
+  const { Students } = props;
+  console.log(Students);
+
   const [isActive, setIsActive] = useState("card");
   return (
     <>
@@ -31,7 +33,7 @@ const StudentsDrawer = () => {
         {/* StudentsCard display */}
         {isActive === "card" && (
           <Row className="mt-4">
-            {StudentsData.map((student) => (
+            {Students.map((student) => (
               <Col
                 key={student.studentId}
                 xs={12}
@@ -61,14 +63,14 @@ const StudentsDrawer = () => {
                 </tr>
               </thead>
               <tbody>
-                {StudentsData.map((student) => (
-                  <tr key={student.studentID} className="text-center">
-                    <td>{student.studentId}</td>
+                {Students.map((student) => (
+                  <tr key={student.student_id} className="text-center">
+                    <td>{student.student_id}</td>
                     <td>{student.name}</td>
                     <td>{student.session}</td>
                     <td>{student.currentSemester}</td>
                     <td>
-                      <Link to={`/profile/${student.studentId}`}>
+                      <Link to={`/profile/${student.student_id}`}>
                         <button className="btn btn-success">View</button>
                       </Link>
                     </td>

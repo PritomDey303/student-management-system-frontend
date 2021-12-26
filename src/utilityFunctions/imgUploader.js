@@ -7,13 +7,13 @@ const singleImgUploader = (imgFile) => {
   imageData.append("image", imgFile);
   console.log(imageData);
   axios
-    .post("https://api.imgbb.com/1/upload/Id_Card_img", imageData)
+    .post("https://api.imgbb.com/1/upload", imageData)
     .then(function (response) {
       console.log(response.data.data.url);
       return response.data.data.url;
     })
     .catch(function (error) {
-      // console.log(error);
+      console.log(error);
     });
 };
 
