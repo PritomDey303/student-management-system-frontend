@@ -13,8 +13,8 @@ const Personalinfo = (props) => {
     nid,
     email,
     phone,
-    local_guardian_name,
-    local_guardian_phone,
+    guardian_name,
+    guardian_phone,
   } = props.personalInfo;
   return (
     <>
@@ -80,12 +80,12 @@ const Personalinfo = (props) => {
               <tr>
                 <th width="30%">Local Gurdian's Name</th>
                 <td width="2%">:</td>
-                <td>{local_guardian_name}</td>
+                <td>{guardian_name}</td>
               </tr>
               <tr>
                 <th width="30%">Local Gurdian's Phone No.</th>
                 <td width="2%">:</td>
-                <td>{local_guardian_phone}</td>
+                <td>{guardian_phone}</td>
               </tr>
             </tbody>
           </Table>

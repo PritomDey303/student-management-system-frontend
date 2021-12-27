@@ -4,6 +4,7 @@ import { ContextProvider } from "../../../../App";
 import AdminRequest from "../AdminRequest/AdminRequest";
 import Dashboardwelcome from "../DashboardWelcome/DashboardWelcome";
 import Studentrequest from "../StudentRequest/StudentRequest";
+import Updatepersonalinfo from "../UpdatePersonalInfo/UpdatePersonalInfo";
 import "./VerticalTabs.css";
 const Verticaltabs = () => {
   const [, LoggedInUser] = useContext(ContextProvider);
@@ -24,7 +25,7 @@ const Verticaltabs = () => {
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="Update Personal Info">
+                  <Nav.Link eventKey="UpdatePersonalInfo">
                     Update Personal Info
                   </Nav.Link>
                 </Nav.Item>
@@ -67,7 +68,7 @@ const Verticaltabs = () => {
                   <h1>ssldfjasf;</h1>
                 </Tab.Pane>
                 <Tab.Pane eventKey="UpdatePersonalInfo">
-                  <h1>ssldfjasf;</h1>
+                  <Updatepersonalinfo />
                 </Tab.Pane>
                 <Tab.Pane eventKey="UpdateAcademicInfo">
                   <h1>ssldfjasf;</h1>

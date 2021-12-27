@@ -64,8 +64,8 @@ const Profile = () => {
           nid: res.data[0].nid,
           email: res.data[0].email,
           phone: res.data[0].phone,
-          local_guardian_name: res.data[0].local_guardian_name,
-          local_guardian_phone: res.data[0].local_guardian_phone,
+          guardian_name: res.data[0].guardian_name,
+          guardian_phone: res.data[0].guardian_phone,
         });
       });
   }, [api, id]);
