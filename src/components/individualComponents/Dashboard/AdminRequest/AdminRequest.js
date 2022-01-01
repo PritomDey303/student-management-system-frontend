@@ -52,7 +52,6 @@ const Adminrequest = () => {
       axios
         .delete(`http://localhost:5000/admin/declineadmin/${auth_id}`)
         .then((res) => {
-          console.log(res);
           if (res.status === 200) {
             addToast(res.data.msg, {
               appearance: "success",

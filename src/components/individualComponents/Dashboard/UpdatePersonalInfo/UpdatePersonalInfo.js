@@ -10,6 +10,8 @@ const Updatepersonalinfo = () => {
   const [personalInfo, setPersonalInfo] = useState({});
   const { register, handleSubmit } = useForm();
   const [api, LoggedInUser] = useContext(ContextProvider);
+  const [reload, setReload] = useState(true);
+
   //get personalinfo
   useEffect(() => {
     axios
@@ -17,9 +19,9 @@ const Updatepersonalinfo = () => {
         withCredentials: true,
       })
       .then((res) => setPersonalInfo(res.data[0]));
-  }, [api]);
+  }, [api, reload]);
   //form submission
-  const onSubmit = (data) => {
+  const onSubmit = (data, e) => {
     const updateObj = {
       authentication_id: LoggedInUser.authentication_id,
       ...data,
@@ -36,6 +38,7 @@ const Updatepersonalinfo = () => {
     axios
       .post(`${api}/personalinfo/update`, updateObj, config)
       .then((res) => {
+        setReload(!reload);
         if (res.data.status === 200) {
           addToast(res.data.msg, {
             appearance: "success",
@@ -44,6 +47,7 @@ const Updatepersonalinfo = () => {
             autoDismissTimeout: 3000,
             transitionDuration: 400,
           });
+          e.target.reset();
         } else {
           addToast(res.data.msg, {
             appearance: "error",
@@ -59,7 +63,7 @@ const Updatepersonalinfo = () => {
       });
   };
   return (
-    <fiv className="mt-5 ">
+    <div className="mt-3 ">
       <h1 className="mt-3 mb-4 text-green">
         Upadate Your Personal Information
       </h1>
@@ -222,7 +226,7 @@ const Updatepersonalinfo = () => {
           Submit
         </button>
       </Form>
-    </fiv>
+    </div>
   );
 };
 

@@ -4,7 +4,10 @@ import { ContextProvider } from "../../../../App";
 import AdminRequest from "../AdminRequest/AdminRequest";
 import Dashboardwelcome from "../DashboardWelcome/DashboardWelcome";
 import Studentrequest from "../StudentRequest/StudentRequest";
+import Updateeducationinfo from "../UpdateEducationInfo/UpdateEducationInfo";
 import Updatepersonalinfo from "../UpdatePersonalInfo/UpdatePersonalInfo";
+import Updateprofilepicture from "../UpdateProfilePicture/UpdateProfilePicture";
+import Updateresult from "../UpdateResult/UpdateResult";
 import "./VerticalTabs.css";
 const Verticaltabs = () => {
   const [, LoggedInUser] = useContext(ContextProvider);
@@ -30,7 +33,7 @@ const Verticaltabs = () => {
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="Update Education Info">
+                  <Nav.Link eventKey="UpdateEducationInfo">
                     Update Education Info
                   </Nav.Link>
                 </Nav.Item>
@@ -65,13 +68,13 @@ const Verticaltabs = () => {
                   <Dashboardwelcome />
                 </Tab.Pane>
                 <Tab.Pane eventKey="UpdateProfilePicture">
-                  <h1>ssldfjasf;</h1>
+                  <Updateprofilepicture />
                 </Tab.Pane>
                 <Tab.Pane eventKey="UpdatePersonalInfo">
                   <Updatepersonalinfo />
                 </Tab.Pane>
-                <Tab.Pane eventKey="UpdateAcademicInfo">
-                  <h1>ssldfjasf;</h1>
+                <Tab.Pane eventKey="UpdateEducationInfo">
+                  <Updateeducationinfo />
                 </Tab.Pane>
               </Tab.Content>
             )}
@@ -80,14 +83,16 @@ const Verticaltabs = () => {
                 <Tab.Pane eventKey="Dashboard">
                   <Dashboardwelcome />
                 </Tab.Pane>
-                <Tab.Pane eventKey="UpdateProfilePicture">
-                  <h1>ssldfjasf;</h1>
-                </Tab.Pane>
+                <Tab.Pane eventKey="UpdateProfilePicture"></Tab.Pane>
                 <Tab.Pane eventKey="StudentSignUpRequests">
                   <Studentrequest />
                 </Tab.Pane>
                 <Tab.Pane eventKey="AdminSignUpRequests">
                   <AdminRequest />
+                </Tab.Pane>
+
+                <Tab.Pane eventKey="UpdateResults">
+                  <Updateresult />
                 </Tab.Pane>
               </Tab.Content>
             )}

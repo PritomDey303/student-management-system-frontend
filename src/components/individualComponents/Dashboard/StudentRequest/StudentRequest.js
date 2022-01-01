@@ -19,7 +19,6 @@ const Studentrequest = () => {
         method: "get",
         url: "http://localhost:5000/students/pendingstudents",
       }).then(function (res) {
-        console.log(res.data);
         setStudents(res.data);
       });
   }, [Reload]);

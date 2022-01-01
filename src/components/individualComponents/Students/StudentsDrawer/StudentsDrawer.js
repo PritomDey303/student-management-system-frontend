@@ -68,7 +68,7 @@ const StudentsDrawer = (props) => {
                     <td>{student.student_id}</td>
                     <td>{student.name}</td>
                     <td>{student.session}</td>
-                    <td>{student.currentSemester}</td>
+                    <td>{student.semester_name}</td>
                     <td>
                       <Link to={`/profile/${student.student_id}`}>
                         <button className="btn btn-success">View</button>

@@ -21,17 +21,19 @@ export default function About() {
             />
           </Col>
           <Col md={6} className="mb-3">
-            <h3 className="text-green lead">
+            <h2 className="text-green mb-4">
               Computer Science And Engineering
-            </h3>
-            The Department of Computer Science & Engineering (CSE) at the
-            University of Chittagong launched its undergraduate major programme
-            in 2001 and its postgraduate programme in 2010. CSE department
-            currently hosts 22 faculty members, including eight Professors and
-            around 400 students. There are 300 undergraduate students, 100 MSc
-            students, and a few postgraduate research students in CSE
-            department, carrying out learning and research activities in a very
-            co-operative and friendly environment.
+            </h2>
+            <p className="lead">
+              The Department of Computer Science & Engineering (CSE) at the
+              University of Chittagong launched its undergraduate major
+              programme in 2001 and its postgraduate programme in 2010. CSE
+              department currently hosts 22 faculty members, including eight
+              Professors and around 400 students. There are 300 undergraduate
+              students, 100 MSc students, and a few postgraduate research
+              students in CSE department, carrying out learning and research
+              activities in a very co-operative and friendly environment.
+            </p>
           </Col>
         </Row>
       </Container>
