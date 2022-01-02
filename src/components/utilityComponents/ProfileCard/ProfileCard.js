@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import blankPicture from "../../../images/blank-profile-picture.png";
 import "./ProfileCard.css";
 const Profilecard = (props) => {
-  const { name, student_id, session } = props.students;
-  const profile_picture = null;
+  console.log(props.students);
+  const { name, student_id, session, profile_picture } = props.students;
+
   return (
     <div>
       <Card className="profile-card my-3 ">

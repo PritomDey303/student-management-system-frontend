@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import { ToastProvider } from "react-toast-notifications";
 import "./App.css";
 import Dashboard from "./components/individualComponents/Dashboard/Dashboard";
+import Updatesingleresult from "./components/individualComponents/Dashboard/UpdateResult/UpdateSingleResult/UpdateSingleResult";
 import Emailverification from "./components/individualComponents/EmailVerification/EmailVerification";
 import Home from "./components/individualComponents/Home/Home";
 import Profile from "./components/individualComponents/Profile/Profile";
@@ -33,11 +34,8 @@ function App() {
     axios
       .get(`${api}/authentication/keeplogin`, { withCredentials: true })
       .then((res) => {
-        console.log(res.data.email);
         if (res.data.email && res.data.role) {
-          console.log("inside app");
           setLoggedInUser(res.data);
-
           navigate(location.pathname);
         } else if (
           location.pathname === "/signup" ||
@@ -69,6 +67,11 @@ function App() {
             <Route path="/signup" element={<SignUpPage />} />
 
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route
+              path="/dashboard/updateresult/:id"
+              element={<Updatesingleresult />}
+            />
+
             <Route
               path="/verification/:token"
               element={<Emailverification />}

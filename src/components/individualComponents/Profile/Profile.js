@@ -10,6 +10,7 @@ import Academicinfo from "./AcademicInfo/AcademicInfo";
 import Educationinfo from "./EducationInfo/EducationInfo";
 import Personalinfo from "./PersonalInfo/PersonalInfo";
 import "./Profile.css";
+import Resultinfo from "./ResultInfo/ResultInfo";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const Profile = () => {
   const [academicInfo, setAcademicInfo] = useState({});
   const [personalInfo, setPersonalInfo] = useState({});
   const [educationInfo, setEducationInfo] = useState({});
+  const [resultInfo, setResultInfo] = useState([]);
   useEffect(() => {
     let finalApi = null;
     id === "*"
@@ -69,6 +71,15 @@ const Profile = () => {
         });
       });
   }, [api, id]);
+  useEffect(() => {
+    let finalApi = null;
+    id === "*"
+      ? (finalApi = `${api}/result/getresult`)
+      : (finalApi = `${api}/result/getresult/${id}`);
+    axios
+      .get(finalApi, { withCredentials: true })
+      .then((res) => setResultInfo(res.data));
+  }, [api, id]);
   return (
     <div style={{ backgroundColor: "aliceblue" }}>
       <Navigation />
@@ -78,6 +89,7 @@ const Profile = () => {
           <Row>
             <Col lg={4}>
               <Academicinfo academicInfo={academicInfo} />
+              <Resultinfo resultInfo={resultInfo} />
             </Col>
             <Col lg={8}>
               <Personalinfo personalInfo={personalInfo} />
