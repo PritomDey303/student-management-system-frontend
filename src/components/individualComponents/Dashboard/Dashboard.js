@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { ContextProvider } from "../../../App";
 import Footer from "../../sharedComponents/Footer/Footer";
 import Navigation from "../../sharedComponents/Navigation/Navigation";
