@@ -21,7 +21,7 @@ function App() {
   const navigate = useNavigate();
   // Backend main api url
 
-  const api = "http://localhost:5000";
+  const api = "https://csecustumanagesystem.herokuapp.com";
 
   const [LoggedInUser, setLoggedInUser] = useState({});
   //get current page location

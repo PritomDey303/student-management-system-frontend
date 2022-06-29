@@ -48,7 +48,6 @@ const Loginmodal = () => {
       headers: {
         "Content-Type": "application/json",
       },
-
       withCredentials: true,
     };
     //calling api
